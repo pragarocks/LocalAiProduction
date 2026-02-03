@@ -1,91 +1,404 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <title>VU-VRM</title>
-  <link rel="stylesheet" href="./style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local AI Solutions | Offline Generative Studios</title>
+    <meta name="description" content="Professional installation of offline, subscription-free Generative AI workstations. Flux.2, Wan 2.2, LTX-2, and SUPIR optimized for your hardware.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Theme Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Extracted from your Star Logo
+                        brand: {
+                            dark: '#020617',    // Deep slate background
+                            surface: '#0f172a', // Card background
+                            primary: '#2dd4bf', // Teal-400 (Logo Body)
+                            accent: '#06b6d4',  // Cyan-500 (Logo Glow)
+                            highlight: '#a7f3d0' // Pale Green/Teal
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #020617; }
+        h1, h2, h3, .font-display { font-family: 'Space Grotesk', sans-serif; }
+        
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(45, 212, 191, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(45, 212, 191, 0.5);
+            box-shadow: 0 0 20px rgba(45, 212, 191, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 20px rgba(45, 212, 191, 0.5);
+        }
+        
+        /* Dynamic Background Orbs */
+        .bg-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.4;
+            z-index: -1;
+        }
+    </style>
 </head>
+<body class="text-slate-100 antialiased selection:bg-brand-primary selection:text-brand-dark overflow-x-hidden">
 
-<body>
-<!-- three.min.js r110 -->
-<script src="https://cdn.jsdelivr.net/npm/three@0.110.0/build/three.min.js"></script>
-
-<!-- GLTFLoader.js -->
-<script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/examples/js/loaders/GLTFLoader.js"></script>
-
-<!-- OrbitControls.js -->
-<script src="https://cdn.jsdelivr.net/gh/mrdoob/three.js@r110/examples/js/controls/OrbitControls.js"></script>
-
-<!-- pixiv three-vrm.js -->
-<script src="https://unpkg.com/@pixiv/three-vrm@0.3.0/lib/three-vrm.js"></script>
-
-<script  src="./script.js"></script>
-
- <div class="backplate" id="backplate" >
-    <h1>VU-VRM</h1>
-      <h3>A simple mic-driven VRM client</h3>
-      <h4>Mic access required / Designed for use in OBS</h4>
-      <h4>Built for hands-free webcam-free inclusivity</h4>
-  
+    <!-- Ambient Background Animation -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="bg-orb bg-brand-primary w-96 h-96 top-0 left-[-100px] animate-blob"></div>
+        <div class="bg-orb bg-brand-accent w-96 h-96 bottom-0 right-[-100px] animate-blob animation-delay-2000"></div>
+        <div class="bg-orb bg-purple-500 w-80 h-80 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-blob animation-delay-4000 opacity-20"></div>
     </div>
 
-    <div id="credits" class="credits" onclick="hideinfo()"> 
-      <p>v1.0 by itsTallulahhh</p>
-      <p>an Automattic Empathy</p>
-      <p>Microphone permission required</p>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <!-- Placeholder for the Logo Image -->
+                    <div class="w-10 h-10 relative">
+                        <!-- User: Replace src with '1000053359.jpg' -->
+                        <img src="1000053359.jpg" alt="Logo" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(45,212,191,0.8)]">
+                    </div>
+                    <span class="text-2xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-accent">
+                        LOCAL AI
+                    </span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#stack" class="hover:text-brand-primary transition px-3 py-2 text-sm font-medium tracking-wide">TECH STACK</a>
+                        <a href="#pricing" class="hover:text-brand-primary transition px-3 py-2 text-sm font-medium tracking-wide">PRICING</a>
+                        <a href="#downloads" class="hover:text-brand-primary transition px-3 py-2 text-sm font-medium tracking-wide">DOCS</a>
+                        <a href="mailto:contact@yourdomain.com" class="bg-gradient-to-r from-brand-primary to-brand-accent hover:opacity-90 text-brand-dark px-6 py-2 rounded-full text-sm font-bold transition shadow-[0_0_15px_rgba(45,212,191,0.4)]">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-      <p>Click to dismiss</p>
+    <!-- Hero Section -->
+    <main class="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full border border-brand-primary/30 bg-brand-primary/10 mb-8 animate-float">
+                <span class="w-2 h-2 rounded-full bg-brand-primary mr-2 animate-pulse"></span>
+                <span class="text-brand-highlight text-xs font-bold tracking-widest uppercase">System Status: Online // Flux.2 Ready</span>
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight">
+                OWN YOUR <br>
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary via-brand-accent to-white text-glow">INTELLIGENCE.</span>
+            </h1>
+            
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 leading-relaxed">
+                Fully offline, subscription-free Generative AI Creative Production. 
+                <span class="text-white">Flux.2, Wan 2.2, LTX-2</span> optimized for your hardware.
+            </p>
+            
+            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#pricing" class="group relative px-8 py-4 bg-brand-primary text-brand-dark font-bold text-lg rounded-lg overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(45,212,191,0.3)]">
+                    <div class="absolute inset-0 w-full h-full bg-white/20 group-hover:translate-x-full transition-transform duration-500 skew-x-12 -translate-x-full"></div>
+                    VIEW INSTALLATION PACKAGES
+                </a>
+                <a href="#requirements" class="px-8 py-4 border border-slate-700 text-lg font-medium rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all hover:border-brand-primary/50">
+                    Check Hardware
+                </a>
+            </div>
 
-</div>
+            <!-- Stats Grid -->
+            <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-3xl font-display font-bold text-brand-primary mb-1">0ms</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-widest">Network Latency</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-3xl font-display font-bold text-brand-primary mb-1">100%</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-widest">Data Privacy</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center">
+                    <div class="text-3xl font-display font-bold text-brand-primary mb-1">₹0</div>
+                    <div class="text-xs text-slate-400 uppercase tracking-widest">Monthly Fees</div>
+                </div>
+            </div>
+        </div>
+    </main>
 
-    <div id="infobar" class="infobar" >
-      <p><small>Launch OBS with these arguments to use this as a Browser Source:</small></p>
-      <p><span class="highlight">--use-fake-ui-for-media-stream --allow-file-access-from-files</span></p>
-    </div>
+    <!-- Tech Stack (Grid) -->
+    <section id="stack" class="py-24 relative">
+        <div class="absolute inset-0 bg-brand-surface/50 skew-y-3 transform origin-top-left -z-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">The 2026 Creative Stack</h2>
+                <p class="text-slate-400">Commercial-ready. Production-integrated. Open-source.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Image Stack -->
+                <div class="glass-card p-8 rounded-2xl border-t-4 border-brand-primary">
+                    <div class="flex items-center mb-6">
+                        <div class="p-3 bg-brand-primary/10 rounded-lg text-brand-primary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="ml-4 text-xl font-bold text-white">Image Gen & Edit</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span>
+                            <span><strong>Flux.2 Family</strong> (Pro/Flex/Dev)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span>
+                            <span><strong>Z-Image Turbo</strong> (Realtime)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span>
+                            <span><strong>Chroma</strong> (Uncensored)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span>
+                            <span><strong>Qwen-Image-Edit</strong></span>
+                        </li>
+                    </ul>
+                </div>
 
-    <div class="interface" id="interface" onclick="interface()">
+                <!-- Video Stack -->
+                <div class="glass-card p-8 rounded-2xl border-t-4 border-purple-500">
+                    <div class="flex items-center mb-6">
+                        <div class="p-3 bg-purple-500/10 rounded-lg text-purple-400">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h3 class="ml-4 text-xl font-bold text-white">Video & Motion</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                            <span><strong>LTX-2</strong> (4K @ 50fps + Audio)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                            <span><strong>Wan 2.1 / 2.2</strong> (Cinema)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
+                            <span><strong>Face Sync</strong> (Audio Driven)</span>
+                        </li>
+                    </ul>
+                </div>
 
-      <div class="closebtn" id="closebtn" onclick="hideinterface()">❌</div>
+                <!-- Enhancement Stack -->
+                <div class="glass-card p-8 rounded-2xl border-t-4 border-green-500">
+                    <div class="flex items-center mb-6">
+                        <div class="p-3 bg-green-500/10 rounded-lg text-green-400">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        </div>
+                        <h3 class="ml-4 text-xl font-bold text-white">Enhance & Audio</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                            <span><strong>SUPIR</strong> (Generative Upscale)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                            <span><strong>FlashVSR</strong> (Video Restore)</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+                            <span><strong>ACE-Step</strong> (Music Gen)</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <div class="sliders" id="sliders">
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 bg-brand-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-white">Choose Your Power Level</h2>
+                <p class="mt-4 text-slate-400">One-time installation. Lifetime ownership.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                
+                <!-- Tier 1 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col border border-slate-800">
+                    <div class="mb-6">
+                        <span class="text-slate-400 font-bold tracking-wider uppercase text-xs">Starter Core</span>
+                        <div class="mt-2 text-4xl font-display font-bold text-white">₹35k</div>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-1 text-sm text-slate-300">
+                        <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Full Python/CUDA Env Setup</li>
+                        <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Basic Templates (Text/Img/Vid)</li>
+                        <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Models: Flux Schnell, SDXL</li>
+                        <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Native Upscaling</li>
+                    </ul>
+                    <a href="mailto:contact@yourdomain.com?subject=Booking Starter Core" class="block w-full text-center py-3 rounded-lg border border-slate-600 text-white hover:bg-white hover:text-black transition font-bold">Book Starter</a>
+                </div>
 
-      <p>
-          <span class="controlboxlabel">Input Volume VU</span>
-          <input type="range" min="0" max="100" value="10" class="slider" id="inputlevel">
+                <!-- Tier 2 (Highlighted) -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col relative transform scale-105 border-2 border-brand-primary shadow-[0_0_30px_rgba(45,212,191,0.15)] bg-gradient-to-b from-brand-surface to-brand-dark">
+                    <div class="absolute top-0 right-0 bg-brand-primary text-brand-dark text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">MOST POPULAR</div>
+                    <div class="mb-6">
+                        <span class="text-brand-primary font-bold tracking-wider uppercase text-xs">Pro Creator</span>
+                        <div class="mt-2 text-4xl font-display font-bold text-white">₹55k</div>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-1 text-sm text-slate-200">
+                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> <strong>SageAttention & Triton Speedups</strong></li>
+                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> <strong>GGUF Memory Optimization</strong></li>
+                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> Pro Models (Flux.2, Wan 2.1, LTX-2)</li>
+                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> Custom Face Swap Workflows</li>
+                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> SUPIR & FlashVSR Support</li>
+                    </ul>
+                    <a href="mailto:contact@yourdomain.com?subject=Booking Pro Creator" class="block w-full text-center bg-brand-primary text-brand-dark font-bold py-4 rounded-lg hover:bg-brand-accent transition shadow-lg shadow-brand-primary/25">Book Pro Creator</a>
+                </div>
 
-          <br>
+                <!-- Tier 3 -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col border border-purple-500/30">
+                    <div class="mb-6">
+                        <span class="text-purple-400 font-bold tracking-wider uppercase text-xs">Enterprise Studio</span>
+                        <div class="mt-2 text-4xl font-display font-bold text-white">₹75k+</div>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-1 text-sm text-slate-300">
+                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> <strong>Tailored Solutions (2-5 Custom Flows)</strong></li>
+                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Full LoRA Fine-Tuning Setup</li>
+                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Multi-GPU Optimization</li>
+                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Custom UI (Simplified Dashboard)</li>
+                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Priority Training & Support</li>
+                    </ul>
+                    <a href="mailto:contact@yourdomain.com?subject=Booking Enterprise" class="block w-full text-center py-3 rounded-lg border border-purple-500/50 text-purple-100 hover:bg-purple-500 hover:text-white transition font-bold">Contact Enterprise</a>
+                </div>
 
-          <span class="controlboxlabel">Mouth Threshold</span>
-          <input type="range" min="0" max="50" value="10" class="slider" id="mouththreshold">
+            </div>
+        </div>
+    </section>
 
-          <br>
-          <span class="controlboxlabel">Body Threshold</span>
-          <input type="range" min="0" max="50" value="10" class="slider" id="bodythreshold">
+    <!-- Downloads Area -->
+    <section id="downloads" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                
+                <div id="requirements">
+                    <h3 class="text-2xl font-display font-bold text-white mb-6">System Requirements</h3>
+                    <p class="text-slate-400 mb-8">High-performance AI requires high-performance hardware. We rely on NVIDIA CUDA cores.</p>
+                    
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg border-l-2 border-slate-500">
+                            <span class="font-bold">Minimum</span>
+                            <span class="text-slate-400 font-mono">RTX 3060 (12GB)</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-brand-primary/10 rounded-lg border-l-2 border-brand-primary">
+                            <span class="font-bold text-brand-primary">Recommended</span>
+                            <span class="text-brand-primary font-mono">RTX 3090 / 4070 Ti</span>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-purple-500/10 rounded-lg border-l-2 border-purple-500">
+                            <span class="font-bold text-purple-400">Production</span>
+                            <span class="text-purple-400 font-mono">RTX 4090 (24GB)</span>
+                        </div>
+                    </div>
+                </div>
 
-          <br>
-          <span class="controlboxlabel">Mouth Gain Boost</span>
-          <input type="range" min="0" max="25" value="10" class="slider" id="mouthboost">
+                <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-3xl border border-slate-700">
+                    <h3 class="text-2xl font-display font-bold text-white mb-6">Essential Downloads</h3>
+                    <div class="space-y-4">
+                        <a href="downloads/Hardware_Readiness_Checklist.pdf" target="_blank" class="group flex items-center p-4 bg-black/30 rounded-xl hover:bg-brand-primary/10 transition border border-transparent hover:border-brand-primary/30">
+                            <div class="p-3 bg-slate-800 rounded-lg mr-4 group-hover:bg-brand-primary group-hover:text-black transition text-slate-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-white">Hardware Checklist</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-wider">PDF Document</span>
+                            </div>
+                        </a>
+                        <a href="downloads/Liability_Waiver_Agreement.pdf" target="_blank" class="group flex items-center p-4 bg-black/30 rounded-xl hover:bg-brand-primary/10 transition border border-transparent hover:border-brand-primary/30">
+                            <div class="p-3 bg-slate-800 rounded-lg mr-4 group-hover:bg-brand-primary group-hover:text-black transition text-slate-300">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                            </div>
+                            <div>
+                                <span class="block font-bold text-white">Liability Waiver</span>
+                                <span class="text-xs text-slate-500 uppercase tracking-wider">Legal Agreement</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
 
-          <br>
-          <span class="controlboxlabel">Body Gain Boost</span>
-          <input type="range" min="0" max="25" value="10" class="slider" id="bodymotion">
+            </div>
+        </div>
+    </section>
 
-          <br>
-          <span class="controlboxlabel">Serious / Smiling</span>
-          <input type="range" min="0" max="100" value="80" class="slider" id="expression">
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div>
+                <span class="text-xl font-display font-bold text-white">Local AI Services</span>
+                <p class="text-slate-500 text-sm mt-1">High-Performance Offline Infrastructure</p>
+            </div>
+            <div class="text-slate-600 text-sm">
+                &copy; 2026 Local AI Services. Serving India & GCC.
+            </div>
+            <div class="flex space-x-6">
+                <a href="#" class="text-slate-500 hover:text-brand-primary transition">Email</a>
+                <a href="#" class="text-slate-500 hover:text-brand-primary transition">WhatsApp</a>
+            </div>
+        </div>
+    </footer>
 
-          </p>
-        
-      </div>
-      
-      <div class="fileinput" id="fileinput">
-          <p>
-            <input id="file" class="file" type="file" accept=".vrm,.VRM" onchange="dofile()"></p>
-      </div>
-      
+</body>
+</html>
 
-        
-    </div> 
 
-  </body>
-  </html>
