@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Local AI Solutions | Offline Generative Studios</title>
-    <meta name="description" content="Professional installation of offline, subscription-free Generative AI workstations. Flux.2, Wan 2.2, LTX-2, and SUPIR optimized for your hardware.">
+    <title>Local AI Services | Offline Generative Studios</title>
+    <meta name="description" content="Professional installation of offline, subscription-free Generative AI workstations. Flux.2, Wan 2.1, and LTX-2 optimized for your hardware.">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+
     <!-- Custom Theme Configuration -->
     <script>
         tailwind.config = {
@@ -16,13 +19,13 @@
             theme: {
                 extend: {
                     colors: {
-                        // Extracted from your Star Logo
+                        // Extracted from your Star Logo (Teal/Cyan Scheme)
                         brand: {
                             dark: '#020617',    // Deep slate background
                             surface: '#0f172a', // Card background
                             primary: '#2dd4bf', // Teal-400 (Logo Body)
                             accent: '#06b6d4',  // Cyan-500 (Logo Glow)
-                            highlight: '#a7f3d0' // Pale Green/Teal
+                            highlight: '#ccfbf1' // Pale Teal
                         }
                     },
                     fontFamily: {
@@ -30,9 +33,10 @@
                         display: ['Space Grotesk', 'sans-serif'],
                     },
                     animation: {
-                        'blob': 'blob 7s infinite',
+                        'blob': 'blob 10s infinite',
                         'float': 'float 6s ease-in-out infinite',
                         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
                     },
                     keyframes: {
                         blob: {
@@ -44,15 +48,16 @@
                         float: {
                             '0%, 100%': { transform: 'translateY(0)' },
                             '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' }
                         }
                     }
                 }
             }
         }
     </script>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     
     <style>
         body { font-family: 'Inter', sans-serif; background-color: #020617; }
@@ -62,67 +67,70 @@
         .glass-panel {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(16px);
-            border: 1px solid rgba(45, 212, 191, 0.1);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid rgba(45, 212, 191, 0.1);
         }
         
         .glass-card {
-            background: rgba(30, 41, 59, 0.4);
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .glass-card:hover {
-            border-color: rgba(45, 212, 191, 0.5);
-            box-shadow: 0 0 20px rgba(45, 212, 191, 0.2);
+            border-color: rgba(45, 212, 191, 0.4);
+            box-shadow: 0 0 30px rgba(45, 212, 191, 0.15);
             transform: translateY(-5px);
         }
 
         .text-glow {
-            text-shadow: 0 0 20px rgba(45, 212, 191, 0.5);
+            text-shadow: 0 0 30px rgba(45, 212, 191, 0.4);
         }
         
         /* Dynamic Background Orbs */
         .bg-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.4;
+            filter: blur(100px);
+            opacity: 0.3;
             z-index: -1;
         }
+
+        /* Smooth Anchor Offsets */
+        html { scroll-padding-top: 100px; }
     </style>
 </head>
 <body class="text-slate-100 antialiased selection:bg-brand-primary selection:text-brand-dark overflow-x-hidden">
 
     <!-- Ambient Background Animation -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="bg-orb bg-brand-primary w-96 h-96 top-0 left-[-100px] animate-blob"></div>
-        <div class="bg-orb bg-brand-accent w-96 h-96 bottom-0 right-[-100px] animate-blob animation-delay-2000"></div>
-        <div class="bg-orb bg-purple-500 w-80 h-80 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-blob animation-delay-4000 opacity-20"></div>
+        <div class="bg-orb bg-brand-primary w-[500px] h-[500px] top-[-100px] left-[-100px] animate-blob"></div>
+        <div class="bg-orb bg-purple-600 w-[600px] h-[600px] bottom-[-100px] right-[-100px] animate-blob animation-delay-2000"></div>
+        <div class="bg-orb bg-brand-accent w-[300px] h-[300px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 animate-blob animation-delay-4000 opacity-20"></div>
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass-panel border-b border-white/5">
+    <nav class="fixed w-full z-50 glass-panel">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <div class="flex items-center gap-3">
-                    <!-- Placeholder for the Logo Image -->
-                    <div class="w-10 h-10 relative">
-                        <!-- User: Replace src with 'app_icon.jpg' -->
-                        <img src="app_icon.jpg" alt="Logo" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(45,212,191,0.8)]">
+                    <!-- Logo Placeholder -->
+                    <div class="w-10 h-10 relative flex items-center justify-center">
+                        <img src="logo.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'" alt="Local AI" class="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(45,212,191,0.8)]">
+                        <!-- Fallback Star Icon if Image Missing -->
+                        <svg class="w-10 h-10 text-brand-primary hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0L14.5 9.5L24 12L14.5 14.5L12 24L9.5 14.5L0 12L9.5 9.5L12 0Z"/></svg>
                     </div>
-                    <span class="text-2xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-accent">
-                        LOCAL AI
+                    <span class="text-2xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-brand-primary to-brand-accent tracking-tight">
+                        LOCAL AI<span class="text-white font-thin">.STUDIO</span>
                     </span>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#stack" class="hover:text-brand-primary transition px-3 py-2 text-sm font-medium tracking-wide">TECH STACK</a>
-                        <a href="#pricing" class="hover:text-brand-primary transition px-3 py-2 text-sm font-medium tracking-wide">PRICING</a>
-                        <a href="#downloads" class="hover:text-brand-primary transition px-3 py-2 text-sm font-medium tracking-wide">DOCS</a>
-                        <a href="mailto:contact@yourdomain.com" class="bg-gradient-to-r from-brand-primary to-brand-accent hover:opacity-90 text-brand-dark px-6 py-2 rounded-full text-sm font-bold transition shadow-[0_0_15px_rgba(45,212,191,0.4)]">
-                            Book Now
+                        <a href="#stack" class="hover:text-brand-primary transition px-3 py-2 text-sm font-medium">MODELS</a>
+                        <a href="#resources" class="hover:text-brand-primary transition px-3 py-2 text-sm font-medium">RESOURCES</a>
+                        <a href="#pricing" class="hover:text-brand-primary transition px-3 py-2 text-sm font-medium">PRICING</a>
+                        <a href="#onboarding" class="bg-white/10 hover:bg-brand-primary hover:text-brand-dark text-white px-5 py-2 rounded-full text-sm font-bold transition border border-white/10 hover:border-brand-primary">
+                            Client Hub
                         </a>
                     </div>
                 </div>
@@ -134,144 +142,162 @@
     <main class="relative pt-32 pb-16 lg:pt-48 lg:pb-32 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             
-            <div class="inline-flex items-center px-4 py-1.5 rounded-full border border-brand-primary/30 bg-brand-primary/10 mb-8 animate-float">
+            <div class="inline-flex items-center px-4 py-1.5 rounded-full border border-brand-primary/30 bg-brand-primary/5 mb-8 animate-float backdrop-blur-md">
                 <span class="w-2 h-2 rounded-full bg-brand-primary mr-2 animate-pulse"></span>
-                <span class="text-brand-highlight text-xs font-bold tracking-widest uppercase">System Status: Online // Flux.2 Ready</span>
+                <span class="text-brand-primary text-xs font-bold tracking-widest uppercase">System Online // Flux.2 & Wan 2.1 Ready</span>
             </div>
             
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-tight">
+            <h1 class="text-5xl md:text-8xl font-bold tracking-tight mb-8 leading-tight font-display">
                 OWN YOUR <br>
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-brand-primary via-brand-accent to-white text-glow">INTELLIGENCE.</span>
             </h1>
             
-            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-400 leading-relaxed">
-                Fully offline, subscription-free Generative AI Creative Production. 
-                <span class="text-white">Flux.2, Wan 2.2, LTX-2</span> optimized for your hardware.
+            <p class="mt-6 max-w-2xl mx-auto text-xl text-slate-400 leading-relaxed font-light">
+                We build high-performance, fully offline <strong class="text-white">Generative AI Studios</strong> on your hardware.
+                Zero subscriptions. 100% Privacy. 
             </p>
             
             <div class="mt-12 flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#pricing" class="group relative px-8 py-4 bg-brand-primary text-brand-dark font-bold text-lg rounded-lg overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(45,212,191,0.3)]">
-                    <div class="absolute inset-0 w-full h-full bg-white/20 group-hover:translate-x-full transition-transform duration-500 skew-x-12 -translate-x-full"></div>
-                    VIEW INSTALLATION PACKAGES
+                <a href="#resources" class="group relative px-8 py-4 bg-brand-primary text-brand-dark font-bold text-lg rounded-xl overflow-hidden transition-all hover:scale-105 shadow-[0_0_20px_rgba(45,212,191,0.3)]">
+                    <div class="absolute inset-0 w-full h-full bg-white/30 group-hover:translate-x-full transition-transform duration-500 skew-x-12 -translate-x-full"></div>
+                    <span class="relative">GET STARTED</span>
                 </a>
-                <a href="#requirements" class="px-8 py-4 border border-slate-700 text-lg font-medium rounded-lg text-slate-300 hover:bg-slate-800 hover:text-white transition-all hover:border-brand-primary/50">
-                    Check Hardware
+                <a href="#stack" class="px-8 py-4 border border-slate-700 text-lg font-medium rounded-xl text-slate-300 hover:bg-slate-800 hover:text-white transition-all hover:border-brand-primary/50">
+                    Explore Stack
                 </a>
             </div>
 
-            <!-- Stats Grid -->
-            <div class="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="text-3xl font-display font-bold text-brand-primary mb-1">0ms</div>
-                    <div class="text-xs text-slate-400 uppercase tracking-widest">Network Latency</div>
+            <!-- Stats Bar -->
+            <div class="mt-20 flex justify-center gap-8 md:gap-16 opacity-70">
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-white">40%</div>
+                    <div class="text-xs text-brand-primary uppercase tracking-widest">Faster (SageAttention)</div>
                 </div>
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="text-3xl font-display font-bold text-brand-primary mb-1">100%</div>
-                    <div class="text-xs text-slate-400 uppercase tracking-widest">Data Privacy</div>
+                <div class="w-px bg-slate-700 h-10"></div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-white">0ms</div>
+                    <div class="text-xs text-brand-primary uppercase tracking-widest">Data Latency</div>
                 </div>
-                <div class="glass-card p-6 rounded-2xl text-center">
-                    <div class="text-3xl font-display font-bold text-brand-primary mb-1">₹0</div>
-                    <div class="text-xs text-slate-400 uppercase tracking-widest">Monthly Fees</div>
+                <div class="w-px bg-slate-700 h-10"></div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold text-white">100%</div>
+                    <div class="text-xs text-brand-primary uppercase tracking-widest">Uncensored</div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Tech Stack (Grid) -->
-    <section id="stack" class="py-24 relative">
-        <div class="absolute inset-0 bg-brand-surface/50 skew-y-3 transform origin-top-left -z-10"></div>
+    <!-- Tech Stack (The Engine) -->
+    <section id="stack" class="py-24 relative border-t border-white/5">
+        <div class="absolute inset-0 bg-brand-surface/30 skew-y-1 transform origin-top-left -z-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold mb-4">The 2026 Creative Stack</h2>
-                <p class="text-slate-400">Commercial-ready. Production-integrated. Open-source.</p>
+                <h2 class="text-4xl font-bold mb-4">The 2026 Tech Stack</h2>
+                <p class="text-slate-400">Commercial-ready. Integrated. Production Optimized.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Image Stack -->
-                <div class="glass-card p-8 rounded-2xl border-t-4 border-brand-primary">
+                <div class="glass-card p-8 rounded-2xl group">
                     <div class="flex items-center mb-6">
-                        <div class="p-3 bg-brand-primary/10 rounded-lg text-brand-primary">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <div class="p-3 bg-brand-primary/10 rounded-lg text-brand-primary group-hover:bg-brand-primary group-hover:text-brand-dark transition">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                         </div>
-                        <h3 class="ml-4 text-xl font-bold text-white">Image Gen & Edit</h3>
+                        <h3 class="ml-4 text-xl font-bold text-white">Image Gen</h3>
                     </div>
-                    <ul class="space-y-4 text-slate-300">
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span>
-                            <span><strong>Flux.2 Family</strong> (Pro/Flex/Dev)</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span>
-                            <span><strong>Z-Image Turbo</strong> (Realtime)</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span>
-                            <span><strong>Chroma</strong> (Uncensored)</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-brand-primary rounded-full"></span>
-                            <span><strong>Qwen-Image-Edit</strong></span>
-                        </li>
+                    <ul class="space-y-3 text-slate-300 text-sm">
+                        <li class="flex justify-between border-b border-white/5 pb-2"><span>Flux.2 Family</span> <span class="text-brand-primary font-mono">SOTA</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-2"><span>Z-Image Turbo</span> <span class="text-brand-primary font-mono">Realtime</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-2"><span>Chroma</span> <span class="text-brand-primary font-mono">Uncensored</span></li>
+                        <li class="flex justify-between"><span>Qwen-Edit</span> <span class="text-brand-primary font-mono">Semantic</span></li>
                     </ul>
                 </div>
 
                 <!-- Video Stack -->
-                <div class="glass-card p-8 rounded-2xl border-t-4 border-purple-500">
+                <div class="glass-card p-8 rounded-2xl group">
                     <div class="flex items-center mb-6">
-                        <div class="p-3 bg-purple-500/10 rounded-lg text-purple-400">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        <div class="p-3 bg-purple-500/10 rounded-lg text-purple-400 group-hover:bg-purple-500 group-hover:text-white transition">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                         </div>
-                        <h3 class="ml-4 text-xl font-bold text-white">Video & Motion</h3>
+                        <h3 class="ml-4 text-xl font-bold text-white">Motion AI</h3>
                     </div>
-                    <ul class="space-y-4 text-slate-300">
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
-                            <span><strong>LTX-2</strong> (4K @ 50fps + Audio)</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
-                            <span><strong>Wan 2.1 / 2.2</strong> (Cinema)</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-purple-500 rounded-full"></span>
-                            <span><strong>Face Sync</strong> (Audio Driven)</span>
-                        </li>
+                    <ul class="space-y-3 text-slate-300 text-sm">
+                        <li class="flex justify-between border-b border-white/5 pb-2"><span>Wan 2.1</span> <span class="text-purple-400 font-mono">Cinema</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-2"><span>LTX-2</span> <span class="text-purple-400 font-mono">Audio+Vid</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-2"><span>AnimateDiff</span> <span class="text-purple-400 font-mono">Motion</span></li>
+                        <li class="flex justify-between"><span>Face Sync</span> <span class="text-purple-400 font-mono">LipSync</span></li>
                     </ul>
                 </div>
 
-                <!-- Enhancement Stack -->
-                <div class="glass-card p-8 rounded-2xl border-t-4 border-green-500">
+                <!-- Enhancement -->
+                <div class="glass-card p-8 rounded-2xl group">
                     <div class="flex items-center mb-6">
-                        <div class="p-3 bg-green-500/10 rounded-lg text-green-400">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                        <div class="p-3 bg-green-500/10 rounded-lg text-green-400 group-hover:bg-green-500 group-hover:text-white transition">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                         </div>
-                        <h3 class="ml-4 text-xl font-bold text-white">Enhance & Audio</h3>
+                        <h3 class="ml-4 text-xl font-bold text-white">Enhance</h3>
                     </div>
-                    <ul class="space-y-4 text-slate-300">
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                            <span><strong>SUPIR</strong> (Generative Upscale)</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                            <span><strong>FlashVSR</strong> (Video Restore)</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                            <span><strong>ACE-Step</strong> (Music Gen)</span>
-                        </li>
+                    <ul class="space-y-3 text-slate-300 text-sm">
+                        <li class="flex justify-between border-b border-white/5 pb-2"><span>SUPIR</span> <span class="text-green-400 font-mono">Img Upscale</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-2"><span>FlashVSR</span> <span class="text-green-400 font-mono">Vid Upscale</span></li>
+                        <li class="flex justify-between border-b border-white/5 pb-2"><span>ACE-Step</span> <span class="text-green-400 font-mono">Music Gen</span></li>
+                        <li class="flex justify-between"><span>MMAudio</span> <span class="text-green-400 font-mono">SFX</span></li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Pricing Section -->
+    <!-- Phase 2: Evaluation (Download Resources) -->
+    <section id="resources" class="py-20 bg-brand-surface/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
+                <div>
+                    <h2 class="text-3xl font-display font-bold text-white">Step 1: Check Eligibility</h2>
+                    <p class="text-slate-400 mt-2">Download these documents to see if your hardware qualifies and to view detailed pricing.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- System Requirements Card -->
+                <a href="downloads/System_Requirements.pdf" target="_blank" class="group relative overflow-hidden rounded-2xl p-8 bg-slate-900 border border-slate-700 hover:border-brand-primary transition duration-300">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                        <svg class="w-32 h-32 text-brand-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M4 6H20V18H4V6ZM2 4C0.89 4 0 4.89 0 6V18C0 19.11 0.89 20 2 20H22C23.11 20 24 19.11 24 18V6C24 4.89 23.11 4 22 4H2ZM2 6H22V18H2V6Z"/></svg>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="text-xs font-bold text-brand-primary uppercase tracking-wider mb-2 block">Mandatory Check</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Hardware Matrix</h3>
+                        <p class="text-slate-400 text-sm mb-6">Verify your GPU (RTX 3060/4090) and Storage requirements before booking.</p>
+                        <span class="inline-flex items-center text-white font-bold group-hover:text-brand-primary transition">
+                            Download PDF <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Quotation Card -->
+                <a href="downloads/Service_Quotation.pdf" target="_blank" class="group relative overflow-hidden rounded-2xl p-8 bg-slate-900 border border-slate-700 hover:border-brand-primary transition duration-300">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition">
+                        <svg class="w-32 h-32 text-brand-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.9 22 6 22H18C19.1 22 20 21.1 20 20V8L14 2ZM16 18H8V16H16V18ZM16 14H8V12H16V14ZM13 9V3.5L18.5 9H13Z"/></svg>
+                    </div>
+                    <div class="relative z-10">
+                        <span class="text-xs font-bold text-brand-primary uppercase tracking-wider mb-2 block">Official Price List</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">Service Quotation</h3>
+                        <p class="text-slate-400 text-sm mb-6">Detailed breakdown of models, workflows, and installation fees for all 3 tiers.</p>
+                        <span class="inline-flex items-center text-white font-bold group-hover:text-brand-primary transition">
+                            Download PDF <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phase 3: Decision (Pricing) -->
     <section id="pricing" class="py-24 bg-brand-dark relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-white">Choose Your Power Level</h2>
-                <p class="mt-4 text-slate-400">One-time installation. Lifetime ownership.</p>
+                <h2 class="text-4xl font-bold text-white">Step 2: Choose Tier</h2>
+                <p class="mt-4 text-slate-400">Select your optimization level. One-time fee.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -280,30 +306,29 @@
                 <div class="glass-card rounded-2xl p-8 flex flex-col border border-slate-800">
                     <div class="mb-6">
                         <span class="text-slate-400 font-bold tracking-wider uppercase text-xs">Starter Core</span>
-                        <div class="mt-2 text-4xl font-display font-bold text-white">₹35k</div>
+                        <div class="mt-2 text-4xl font-display font-bold text-white">₹35,000</div>
                     </div>
                     <ul class="space-y-4 mb-8 flex-1 text-sm text-slate-300">
-                        <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Full Python/CUDA Env Setup</li>
-                        <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Basic Templates (Text/Img/Vid)</li>
+                        <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Full Python/CUDA Env</li>
                         <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Models: Flux Schnell, SDXL</li>
+                        <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Basic Templates</li>
                         <li class="flex items-start"><span class="text-brand-primary mr-2">✓</span> Native Upscaling</li>
                     </ul>
                     <a href="mailto:contact@yourdomain.com?subject=Booking Starter Core" class="block w-full text-center py-3 rounded-lg border border-slate-600 text-white hover:bg-white hover:text-black transition font-bold">Book Starter</a>
                 </div>
 
                 <!-- Tier 2 (Highlighted) -->
-                <div class="glass-card rounded-2xl p-8 flex flex-col relative transform scale-105 border-2 border-brand-primary shadow-[0_0_30px_rgba(45,212,191,0.15)] bg-gradient-to-b from-brand-surface to-brand-dark">
-                    <div class="absolute top-0 right-0 bg-brand-primary text-brand-dark text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">MOST POPULAR</div>
+                <div class="glass-card rounded-2xl p-8 flex flex-col relative transform md:-translate-y-4 border-2 border-brand-primary shadow-[0_0_30px_rgba(45,212,191,0.15)] bg-gradient-to-b from-brand-surface to-brand-dark">
+                    <div class="absolute top-0 right-0 bg-brand-primary text-brand-dark text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAR</div>
                     <div class="mb-6">
                         <span class="text-brand-primary font-bold tracking-wider uppercase text-xs">Pro Creator</span>
-                        <div class="mt-2 text-4xl font-display font-bold text-white">₹55k</div>
+                        <div class="mt-2 text-4xl font-display font-bold text-white">₹55,000</div>
                     </div>
                     <ul class="space-y-4 mb-8 flex-1 text-sm text-slate-200">
-                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> <strong>SageAttention & Triton Speedups</strong></li>
-                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> <strong>GGUF Memory Optimization</strong></li>
-                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> Pro Models (Flux.2, Wan 2.1, LTX-2)</li>
-                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> Custom Face Swap Workflows</li>
-                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> SUPIR & FlashVSR Support</li>
+                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> <strong>SageAttention & Triton</strong></li>
+                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> <strong>Flux.2 & Wan 2.1</strong></li>
+                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> GGUF Memory Opt.</li>
+                        <li class="flex items-start"><span class="text-brand-accent mr-2">✓</span> 3 Custom Workflows</li>
                     </ul>
                     <a href="mailto:contact@yourdomain.com?subject=Booking Pro Creator" class="block w-full text-center bg-brand-primary text-brand-dark font-bold py-4 rounded-lg hover:bg-brand-accent transition shadow-lg shadow-brand-primary/25">Book Pro Creator</a>
                 </div>
@@ -312,14 +337,13 @@
                 <div class="glass-card rounded-2xl p-8 flex flex-col border border-purple-500/30">
                     <div class="mb-6">
                         <span class="text-purple-400 font-bold tracking-wider uppercase text-xs">Enterprise Studio</span>
-                        <div class="mt-2 text-4xl font-display font-bold text-white">₹75k+</div>
+                        <div class="mt-2 text-4xl font-display font-bold text-white">₹75,000+</div>
                     </div>
                     <ul class="space-y-4 mb-8 flex-1 text-sm text-slate-300">
-                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> <strong>Tailored Solutions (2-5 Custom Flows)</strong></li>
-                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Full LoRA Fine-Tuning Setup</li>
-                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Multi-GPU Optimization</li>
-                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Custom UI (Simplified Dashboard)</li>
-                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Priority Training & Support</li>
+                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> <strong>Tailored Business Logic</strong></li>
+                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Local LoRA Training</li>
+                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Multi-GPU Clustering</li>
+                        <li class="flex items-start"><span class="text-purple-400 mr-2">✓</span> Priority Support (1 Month)</li>
                     </ul>
                     <a href="mailto:contact@yourdomain.com?subject=Booking Enterprise" class="block w-full text-center py-3 rounded-lg border border-purple-500/50 text-purple-100 hover:bg-purple-500 hover:text-white transition font-bold">Contact Enterprise</a>
                 </div>
@@ -328,52 +352,38 @@
         </div>
     </section>
 
-    <!-- Downloads Area -->
-    <section id="downloads" class="py-20 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+    <!-- Phase 4: Onboarding (Client Hub) -->
+    <section id="onboarding" class="py-20 relative bg-black">
+        <div class="absolute inset-0 bg-brand-primary/5"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8 bg-brand-surface border border-brand-primary/20 p-8 md:p-12 rounded-3xl">
                 
-                <div id="requirements">
-                    <h3 class="text-2xl font-display font-bold text-white mb-6">System Requirements</h3>
-                    <p class="text-slate-400 mb-8">High-performance AI requires high-performance hardware. We rely on NVIDIA CUDA cores.</p>
-                    
-                    <div class="space-y-3">
-                        <div class="flex items-center justify-between p-4 bg-white/5 rounded-lg border-l-2 border-slate-500">
-                            <span class="font-bold">Minimum</span>
-                            <span class="text-slate-400 font-mono">RTX 3060 (12GB)</span>
-                        </div>
-                        <div class="flex items-center justify-between p-4 bg-brand-primary/10 rounded-lg border-l-2 border-brand-primary">
-                            <span class="font-bold text-brand-primary">Recommended</span>
-                            <span class="text-brand-primary font-mono">RTX 3090 / 4070 Ti</span>
-                        </div>
-                        <div class="flex items-center justify-between p-4 bg-purple-500/10 rounded-lg border-l-2 border-purple-500">
-                            <span class="font-bold text-purple-400">Production</span>
-                            <span class="text-purple-400 font-mono">RTX 4090 (24GB)</span>
-                        </div>
+                <div class="md:w-1/2">
+                    <div class="inline-block px-3 py-1 bg-brand-primary/20 text-brand-primary rounded-full text-xs font-bold mb-4">POST-BOOKING</div>
+                    <h2 class="text-3xl font-display font-bold text-white mb-4">Client Onboarding Hub</h2>
+                    <p class="text-slate-400 mb-6">
+                        Once you have selected a tier, we require two documents to proceed with the installation. 
+                        Please download, sign, and have these ready for your technician.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="downloads/Pre_Install_Checklist.pdf" target="_blank" class="flex items-center justify-center px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border border-slate-600 transition">
+                            <svg class="w-5 h-5 mr-2 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            System Checklist
+                        </a>
+                        <a href="downloads/Liability_Waiver.pdf" target="_blank" class="flex items-center justify-center px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg border border-slate-600 transition">
+                            <svg class="w-5 h-5 mr-2 text-brand-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                            Liability Waiver
+                        </a>
                     </div>
                 </div>
 
-                <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-3xl border border-slate-700">
-                    <h3 class="text-2xl font-display font-bold text-white mb-6">Essential Downloads</h3>
-                    <div class="space-y-4">
-                        <a href="downloads/Hardware_Readiness_Checklist.pdf" target="_blank" class="group flex items-center p-4 bg-black/30 rounded-xl hover:bg-brand-primary/10 transition border border-transparent hover:border-brand-primary/30">
-                            <div class="p-3 bg-slate-800 rounded-lg mr-4 group-hover:bg-brand-primary group-hover:text-black transition text-slate-300">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                            </div>
-                            <div>
-                                <span class="block font-bold text-white">Hardware Checklist</span>
-                                <span class="text-xs text-slate-500 uppercase tracking-wider">PDF Document</span>
-                            </div>
-                        </a>
-                        <a href="downloads/AI_Workstation_Liability_Waiver_FULL.docx" target="_blank" class="group flex items-center p-4 bg-black/30 rounded-xl hover:bg-brand-primary/10 transition border border-transparent hover:border-brand-primary/30">
-                            <div class="p-3 bg-slate-800 rounded-lg mr-4 group-hover:bg-brand-primary group-hover:text-black transition text-slate-300">
-                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
-                            </div>
-                            <div>
-                                <span class="block font-bold text-white">Liability Waiver</span>
-                                <span class="text-xs text-slate-500 uppercase tracking-wider">Legal Agreement</span>
-                            </div>
-                        </a>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-sm p-6 bg-slate-900 rounded-xl border border-dashed border-slate-600 text-center">
+                        <div class="w-16 h-16 bg-brand-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 text-brand-primary">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                        </div>
+                        <h3 class="text-white font-bold text-lg">Next Steps</h3>
+                        <p class="text-sm text-slate-500 mt-2">1. Book a slot via email.<br>2. Sign the Waiver & Checklist.<br>3. Send docs to technician.<br>4. Installation begins (3-5 Hours).</p>
                     </div>
                 </div>
 
@@ -384,15 +394,18 @@
     <!-- Footer -->
     <footer class="bg-black py-12 border-t border-slate-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div>
-                <span class="text-xl font-display font-bold text-white">Local AI Services</span>
-                <p class="text-slate-500 text-sm mt-1">High-Performance Offline Infrastructure</p>
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-brand-primary rounded-full flex items-center justify-center text-brand-dark font-bold">L</div>
+                <div>
+                    <span class="text-xl font-display font-bold text-white">Local AI Services</span>
+                    <p class="text-slate-500 text-sm mt-1">High-Performance Offline Infrastructure</p>
+                </div>
             </div>
-            <div class="text-slate-600 text-sm">
-                &copy; 2026 Local AI Services. Serving India & GCC.
+            <div class="text-slate-600 text-sm text-center md:text-right">
+                &copy; 2026 Local AI Services. <br class="md:hidden">Serving India & GCC Regions.
             </div>
             <div class="flex space-x-6">
-                <a href="mailto:lokeshrv01@gmail.com" class="text-slate-500 hover:text-brand-primary transition">Email</a>
+                <a href="mailto:contact@yourdomain.com" class="text-slate-500 hover:text-brand-primary transition">Email Support</a>
                 <a href="#" class="text-slate-500 hover:text-brand-primary transition">WhatsApp</a>
             </div>
         </div>
@@ -400,5 +413,3 @@
 
 </body>
 </html>
-
-
